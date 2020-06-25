@@ -24,5 +24,11 @@ object Back4796 {
 
             arr.add(Triple(one, two, three))
         }
+
+
+        arr.forEachIndexed{i, (L, P, V) ->
+            var tail = if(V % P > L) L else V % P
+            println("Case ${i+1}: ${(L*(V/P))+tail}")
+        }
     }
 }
