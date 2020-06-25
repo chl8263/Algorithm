@@ -1,9 +1,11 @@
+package greedy
+
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-object App {
+object Back1449 {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
