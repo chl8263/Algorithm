@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
-object Back3085 {
+object BOJ3085 {
     @JvmStatic
     fun main(args: Array<String>) {
         val s = Scanner(System.`in`)

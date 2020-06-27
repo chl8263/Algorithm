@@ -2,7 +2,7 @@ package bruteForceSearch
 
 import java.util.*
 
-object Back2309 {
+object BOJ2309 {
     @JvmStatic
     fun main(args: Array<String>){
 

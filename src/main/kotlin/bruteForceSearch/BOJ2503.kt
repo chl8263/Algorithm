@@ -3,7 +3,7 @@ package bruteForceSearch
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-object Back2503 {
+object BOJ2503 {
     @JvmStatic
     fun main(args: Array<String>) {
         val s = Scanner(System.`in`)

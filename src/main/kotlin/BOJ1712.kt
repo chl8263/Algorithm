@@ -3,7 +3,7 @@ import java.io.InputStreamReader
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-object Back1712 {
+object BOJ1712 {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
