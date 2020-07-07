@@ -1,6 +1,4 @@
-package bruteForceSearch
-
-import java.util.*
+package BOJ.bruteForceSearch
 
 object BOJ2309 {
     @JvmStatic
