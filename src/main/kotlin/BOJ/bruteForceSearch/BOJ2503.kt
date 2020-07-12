@@ -1,6 +1,5 @@
-package bruteForceSearch
+package BOJ.bruteForceSearch
 
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 object BOJ2503 {

@@ -1,4 +1,4 @@
-package bruteForceSearch
+package BOJ.bruteForceSearch
 
 import java.io.BufferedReader
 import java.io.InputStreamReader

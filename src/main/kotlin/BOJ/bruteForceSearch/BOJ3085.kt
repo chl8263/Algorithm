@@ -1,8 +1,6 @@
-package bruteForceSearch
+package BOJ.bruteForceSearch
 
-import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 object BOJ3085 {
     @JvmStatic
