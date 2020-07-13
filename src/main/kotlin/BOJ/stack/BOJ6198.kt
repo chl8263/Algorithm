@@ -22,14 +22,10 @@ object BOJ6198 {
         for(i in 0 until num){
             val st2 = StringTokenizer(br.readLine())
             val building = st2.nextToken().toInt()
-            arr[i] = building
-        }
-
-        for(i in 0 until num){
-            while(!stack.isEmpty() && stack.peek() <= arr[i]){
+            while(!stack.isEmpty() && stack.peek() <= building){
                 stack.pop()
             }
-            stack.push(arr[i])
+            stack.push(building)
             result += stack.size-1
         }
 
