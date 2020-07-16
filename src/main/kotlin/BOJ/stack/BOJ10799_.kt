@@ -27,7 +27,6 @@ object BOJ10799_ {
                     s.pop()
                     result++
                 }
-
             }
         }
         bw.write(result.toString())
