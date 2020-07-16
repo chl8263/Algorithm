@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
 
-object BOJ10799 {
+object BOJ10799_ {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
@@ -16,15 +16,17 @@ object BOJ10799 {
         val s = Stack<Int>()
         var result = 0
 
-        for(i in 0 until given.length-1){
+        for(i in given.indices){
             if(given[i] == '('){
                 s.push(i)
             }else if(given[i] == ')'){
                 if(s.peek() == i-1) {
                     s.pop()
-                    if(s.isNotEmpty())
-                        result += s.size +1
-                }else s.pop()
+                    result += s.size
+                }else {
+                    s.pop()
+                    result++
+                }
 
             }
         }
