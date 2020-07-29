@@ -34,28 +34,35 @@ object BOJ9466 {
                     visit[temp.first] = 1
                     q.add(temp)
 
-                    val peek = q.last()
-
                     while (q.isNotEmpty()) {
                         val peek = q.last()
-                        if(peek.first == peek.second){
-                            result += q.size - 1
-                            q.clear()
-                        }else {
-                            when {
-                                peek.second == q.first().first -> {
-                                    q.clear()
-                                }
-                                visit[peek.second] == 1 -> {
-                                    result += q.size
-                                    q.clear()
-                                }
-                                else -> {
-                                    q.add(arr[peek.second])
-                                }
+
+                        when {
+                            peek.second == peek.first -> {
+                                result += q.size - 1
+                                q.clear()
                             }
-                            visit[peek.second] = 1
+                            visit[peek.second] == 1 -> {
+                                result += q.size
+                                q.clear()
+                            }
+                            else -> {
+                                var t = false
+                                q.forEachIndexed loop@{ index, pair ->
+                                    if (index != q.size - 1) {
+                                        if (peek.second == pair.first) {
+                                            result += index - 1
+                                            q.clear()
+                                            t = true
+                                            return@loop
+                                        }
+                                    }
+                                }
+                                if (!t) q.add(arr[peek.second])
+                            }
                         }
+                        visit[peek.second] = 1
+                    //}
                     }
                 }
             }
