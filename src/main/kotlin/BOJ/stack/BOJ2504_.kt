@@ -1,5 +1,6 @@
 package BOJ.stack
 
+import jdk.nashorn.internal.runtime.Source
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
@@ -7,7 +8,7 @@ import java.io.OutputStreamWriter
 import java.util.*
 import kotlin.collections.ArrayList
 
-object BOJ2504 {
+object BOJ2504_ {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
@@ -18,32 +19,13 @@ object BOJ2504 {
         val s = Stack<Any>()
         var flag = true
         var result = 0
-        var cnt1 = 0
-        var cnt2 = 0
+
         loop@for(i in given.indices){
-            if(given[i] == '('){
-                if(++cnt1 < 0 ) {
-                    flag = false
-                    break@loop
-                }
-                s.push(given[i])
-            }else if(given[i] == '['){
-                if(++cnt2 < 0 ) {
-                    flag = false
-                    break@loop
-                }
+            if(given[i] == '(' || given[i] == '['){
                 s.push(given[i])
             }else if(given[i] == ')'){
-                if(--cnt1 < 0 ) {
-                    flag = false
-                    break@loop
-                }
-                if(s.isEmpty()) {
-                    flag = false
-                    break@loop
-                }
                 var temp = 0
-                while(s.peek() != '('){
+                while(s.isNotEmpty() && s.peek() != '('){
                     val peek = s.pop()
                     if(peek is Int)
                         temp += peek
@@ -51,22 +33,18 @@ object BOJ2504 {
                         flag = false
                         break@loop
                     }
+                }
+                if(s.isEmpty()) {
+                    flag = false
+                    break@loop
                 }
                 s.pop()
                 if(temp == 0) temp = 1
                 s.push(temp * 2)
 
             }else if(given[i] == ']'){
-                if(--cnt2 < 0 ) {
-                    flag = false
-                    break@loop
-                }
-                if(s.isEmpty()) {
-                    flag = false
-                    break@loop
-                }
                 var temp = 0
-                while(s.peek() != '['){
+                while(s.isNotEmpty() && s.peek() != '['){
                     val peek = s.pop()
                     if(peek is Int)
                         temp += peek
@@ -74,6 +52,10 @@ object BOJ2504 {
                         flag = false
                         break@loop
                     }
+                }
+                if(s.isEmpty()) {
+                    flag = false
+                    break@loop
                 }
                 s.pop()
                 if(temp == 0) temp = 1
@@ -85,10 +67,16 @@ object BOJ2504 {
         }
 
         if(!flag) bw.write(0.toString())
-        else {
 
+        else {
             while (s.isNotEmpty()) {
-                result += s.pop() as Int
+                var peek = s.pop()
+                if(peek is Int) {
+                    result += peek
+                } else {
+                    result = 0
+                    break
+                }
             }
             bw.write(result.toString())
         }
