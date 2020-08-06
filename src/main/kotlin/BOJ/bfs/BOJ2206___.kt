@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
 
-object BOJ2206 {
+object BOJ2206___ {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
@@ -56,8 +56,8 @@ object BOJ2206 {
             }
         }
 
-        if(ans == Int.MAX_VALUE) println(-1)
-        else println(ans)
+        if(ans == Int.MAX_VALUE) bw.write("-1")
+        else bw.write("$ans")
 
 
         bw.flush()
