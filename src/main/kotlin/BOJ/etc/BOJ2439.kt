@@ -1,10 +1,12 @@
+package BOJ.etc
+
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
 
-object BOJ2442 {
+object BOJ2439 {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
@@ -16,7 +18,7 @@ object BOJ2442 {
         for(i in 1..num){
             for(j in 1..num-i)
                 bw.write(" ")
-            for(j in 1..((2*(i-1))+1))
+            for(j in 1..i)
                 bw.write("*")
             bw.write("\n")
         }
