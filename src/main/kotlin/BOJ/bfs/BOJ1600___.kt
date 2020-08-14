@@ -5,8 +5,9 @@ import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
+import kotlin.math.min
 
-object BOJ1600 {
+object BOJ1600___ {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
@@ -18,7 +19,7 @@ object BOJ1600 {
         val H = st2.nextToken().toInt()
 
         val arr = Array(H){Array(W){-1}}
-        val visit = Array(H){Array(W){Array(K+1){false}}}
+        val visit = Array(H){Array(W){Array(K+1){Pair(false, Int.MAX_VALUE)}}}
 
         for(i in 0 until H){
             val st3 = StringTokenizer(br.readLine())
@@ -32,9 +33,9 @@ object BOJ1600 {
 
         val q: Queue<Hor> = LinkedList()
         q.add(Hor(0, 0, 0, 0))
-        visit[0][0][0] = true
+        visit[0][0][0] = Pair(true, 0)
 
-        var result = -1
+        //var result = -1
         loop@while(q.isNotEmpty()){
             val p = q.poll()
             for(i in 0..11){
@@ -45,36 +46,21 @@ object BOJ1600 {
 
                 if(dy < 0 || dy >= H || dx < 0 || dx >= W) continue
                 if(arr[dy][dx] == 1) continue
-                if(i > 3 && visit[dy][dx][p.hor + 1]) continue
-                if(i <= 3 && visit[dy][dx][p.hor]) continue
-
-                if(dy == H-1 && dx == W-1){
-                    result = p.cnt + 1
-                    break@loop
-                }
+                if(i > 3 && visit[dy][dx][p.hor + 1].first) continue
+                if(i <= 3 && visit[dy][dx][p.hor].first) continue
 
                 q.add(Hor(dy, dx, p.cnt + 1, p.hor + t_break))
-                visit[dy][dx][p.hor + t_break] = true
+                visit[dy][dx][p.hor + t_break] = Pair(true, p.cnt + 1)
             }
         }
 
-        bw.write("$result\n")
+        var result = Int.MAX_VALUE
+        for(i in 0..K){
+            result = min(result, visit[H-1][W-1][i].second)
+        }
 
-//        for(i in 0 until H){
-//            for(j in 0 until W){
-//                print(arr[i][j])
-//            }
-//            println()
-//        }
-//
-//        println()
-//
-//        for(i in 0 until H){
-//            for(j in 0 until W){
-//                print(visit[i][j])
-//            }
-//            println()
-//        }
+        if(result == Int.MAX_VALUE) bw.write("-1\n")
+        else bw.write("$result\n")
 
         bw.flush()
         bw.close()
