@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter
 import java.util.*
 import kotlin.collections.ArrayList
 
-object BOJ3197 {
+object BOJ3197___ {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
@@ -56,7 +56,11 @@ object BOJ3197 {
                     val dx = p.second + vx[i]
 
                     if (dy < 0 || dy >= Y || dx < 0 || dx >= X) continue
-                    if (arr[dy][dx] == 'X' || visit[dy][dx] == 1) continue
+                    if (visit[dy][dx] == 1) continue
+                    if(arr[dy][dx] == 'X') {
+                        arr2[dy][dx] = '.'
+                        continue
+                    }
                     if (dy == endPoint.first && dx == endPoint.second){
                         break@loop
                     }
@@ -66,36 +70,42 @@ object BOJ3197 {
                 }
             }
 
+            result++
+            arr = arr2
+
+            /*
+            * Melt ICE
+            * */
 //            for(y in 0 until Y){
 //                for(x in 0 until X){
-//                    print(arr2[y][x])
+//                    for (i in 0..3) {
+//                        val dy = y + vy[i]
+//                        val dx = x + vx[i]
+//                        if (dy < 0 || dy >= Y || dx < 0 || dx >= X) continue
+//                        if(arr2[y][x] == 'X' && arr[y][x] == 'X' && arr[dy][dx] != 'X') {
+//                            arr2[y][x] = '.'
+//                        }
+//                    }
 //                }
-//                println()
 //            }
-//            println()
+//
+//            arr = arr2
+//            arr2 = Array(Y){Array(X){'X'}}
+//            for(y in 0 until Y){
+//                for(x in 0 until X){
+//                    arr2[y][x] = arr[y][x]
+//                }
+//            }
 
-            for(y in 0 until Y){
-                for(x in 0 until X){
-                    for (i in 0..3) {
-                        val dy = y + vy[i]
-                        val dx = x + vx[i]
-                        if (dy < 0 || dy >= Y || dx < 0 || dx >= X) continue
-                        if(arr2[y][x] == 'X' && arr[y][x] == 'X' && arr[dy][dx] != 'X') {
-                            arr2[y][x] = '.'
-                        }
-                    }
-                }
-            }
+            /*
+            * Melt ICE
+            * */
 
-            arr = arr2
-            arr2 = Array(Y){Array(X){'X'}}
-            for(y in 0 until Y){
-                for(x in 0 until X){
-                    arr2[y][x] = arr[y][x]
-                }
-            }
-            result++
+            //result++
 
+            /*
+            * Trace Ice
+            * */
 //            for(y in 0 until Y){
 //                for(x in 0 until X){
 //                    print(arr[y][x])
@@ -112,6 +122,10 @@ object BOJ3197 {
 //            }
 //            println()
 
+            /*
+            *
+            * */
+
         }
 
 //        for(y in 0 until Y){
@@ -121,7 +135,7 @@ object BOJ3197 {
 //            println()
 //        }
 
-        bw.write("$result")
+        bw.write("${result-1}")
 
         bw.flush()
         bw.close()
