@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
 
-object BOJ11729 {
+object BOJ11729_x {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
@@ -22,6 +22,5 @@ object BOJ11729 {
 
     fun func1(a: Int, b: Int, num: Int){
         if(num == 1) return
-
     }
 }
