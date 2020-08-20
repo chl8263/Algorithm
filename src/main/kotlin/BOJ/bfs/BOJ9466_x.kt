@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
 
-object BOJ9466 {
+object BOJ9466_x {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))

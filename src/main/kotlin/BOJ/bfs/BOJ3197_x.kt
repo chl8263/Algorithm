@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter
 import java.util.*
 import kotlin.collections.ArrayList
 
-object BOJ3197___ {
+object BOJ3197_x {
     @JvmStatic
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
