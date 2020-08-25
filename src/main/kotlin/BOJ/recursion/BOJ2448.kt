@@ -13,21 +13,28 @@ object BOJ2448 {
         val bw = BufferedWriter(OutputStreamWriter(System.`out`))
         val st = StringTokenizer(br.readLine())
         val num = st.nextToken().toInt()
-        val arr = Array(num){Array(num*2-1){'#'}}
+        val arr = Array(num){Array(num*2-1){' '}}
 
         fun func1 (n: Int, y: Int, x: Int){
             if(n == 3){
                 arr[y][x] = '*'
+                arr[y+1][x-1] = '*'
+                arr[y+1][x+1] = '*'
+                arr[y+2][x-2] = '*'
+                arr[y+2][x-1] = '*'
+                arr[y+2][x] = '*'
+                arr[y+2][x+1] = '*'
+                arr[y+2][x+2] = '*'
                 return
             }
 
             val cN = n / 2
-            func1(cN, y, n-1)
-            func1(cN, y+cN, n-1-(cN))
-            func1(cN, y+cN, n-1+(cN))
+            func1(cN, y, x)
+            func1(cN, y+cN, x-(cN))
+            func1(cN, y+cN, x+(cN))
         }
 
-        func1(num, 0, 0)
+        func1(num, 0, num-1)
 
         for(i in arr){
             for(j in i){
