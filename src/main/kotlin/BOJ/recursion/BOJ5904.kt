@@ -20,6 +20,7 @@ object BOJ5904 {
 
             val sb = StringBuilder()
             val x = func1(n-1)
+            if(x.length > num) return x
 
             sb.append("m")
             for(i in 1..n+2){
