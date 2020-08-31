@@ -38,6 +38,16 @@ object BOJ1780 {
             }
         }
 
+        fun cal_ (x: Int) {
+            if(x == -1) {
+                a--
+            } else if(x == 0) {
+                b--
+            }else if(x == 1) {
+                c--
+            }
+        }
+
         fun func1 (n: Int, y: Int, x: Int): Int {
             if(n == 1) return arr[y][x]
 
@@ -60,12 +70,21 @@ object BOJ1780 {
                     if(v == v2 && v == v3 && v == v4 && v == v5
                         && v == v6 && v == v7 && v == v8 && v == v9){
                         cal(v)
-                        return -2
-                    }else if(v == -2){
-                        return -2
+                        return v
+                    }else {
+                        cal(v); cal(v2); cal(v3); cal(v4); cal(v5); cal(v6); cal(v7); cal(v8); cal(v9)
+                        return -3
                     }
-                } else {
-                   cal(v); cal(v2); cal(v3); cal(v4); cal(v5); cal(v6); cal(v7); cal(v8); cal(v9)
+                } else if(n > 3) {
+                    if(v == v2 && v == v3 && v == v4 && v == v5
+                        && v == v6 && v == v7 && v == v8 && v == v9){
+                        for(i in 1..8) {
+                            cal_(v)
+                        }
+                        return v
+                    }else {
+                        return -3
+                    }
                 }
             return -2
         }
