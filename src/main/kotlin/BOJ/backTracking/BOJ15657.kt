@@ -38,10 +38,8 @@ object BOJ15657 {
 
             for(i in s until N){
                 if(!isUsed[i]) {
-                    //isUsed[i] = true
                     arr[k] = i
                     func1(k + 1, i)
-                    //isUsed[i] = false
                 }
             }
         }
