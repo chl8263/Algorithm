@@ -24,9 +24,6 @@ object BOJ15663 {
         val inputArr = Array(N){0}
         val st2 = StringTokenizer(br.readLine())
 
-        //val set = HashSet<String>()
-        val set = ArrayList<String>()
-
         for(i in 0 until N){
             val t = st2.nextToken().toInt()
             inputArr[i] = t
@@ -36,21 +33,19 @@ object BOJ15663 {
 
         fun func1(k: Int){
             if(k == M){
-                val sb = StringBuilder()
+                //val sb = StringBuilder()
                 for(i in 0 until k){
-                    sb.append("${inputArr[arr[i]]} ")
-                    //bw.write("${inputArr[arr[i]]} ")
+                    //sb.append("${inputArr[arr[i]]} ")
+                    bw.write("${inputArr[arr[i]]} ")
                 }
-                if(!set.contains(sb.toString())){
-                    set.add(sb.toString())
-                }
-                //set.add(sb.toString())
-                //bw.write("\n")
+                bw.write("\n")
                 return
             }
 
+            val check = Array(100000){false}
             for(i in 0 until N){
-                if(!isUsed[i]){
+                if(!isUsed[i] && !check[inputArr[i]]){
+                    check[inputArr[i]] = true
                     arr[k] = i
                     isUsed[i] = true
                     func1(k+1)
@@ -60,10 +55,6 @@ object BOJ15663 {
         }
 
         func1(0)
-
-        set.forEach {
-            bw.write("$it\n")
-        }
 
         bw.flush()
         bw.close()
