@@ -11,7 +11,6 @@ object BOJ6603 {
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
         val bw = BufferedWriter(OutputStreamWriter(System.`out`))
-        var result = 0
         var arr: Array<Int> = Array(1){0}
         var check: Array<Boolean> = Array(1){false}
         var num = 0
@@ -47,13 +46,7 @@ object BOJ6603 {
             bw.write("\n")
         }
 
-
         bw.flush()
         bw.close()
     }
-
-
 }
-
-//7 1 2 3 4 5 6 7
-//0
