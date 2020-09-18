@@ -20,7 +20,7 @@ object BOJ1941 {
             }
         }
 
-        val visit = Array(5){Array(5){false}}
+        val visit = Array(25){false}
         val check = Array(7){'x'}
         val checkPath = Array(7){"x"}
 
@@ -56,17 +56,13 @@ object BOJ1941 {
 
         var superResult = 0
 
-        fun func1(c: Int, ty: Int, tx: Int){
+        fun func1(c: Int, start: Int){
             if(c == 7){
-                //var countY = 0
-
                 var countS = 0
                 for(i in 0 until check.size){
-                    //if(check[i] == 'Y') countY++
                     if(check[i] == 'S') countS++
                 }
                 if(countS >= 4){
-//                    println("!!")
                     val f = dfs(checkPath[0][0] - '0', checkPath[0][1] - '0')
                     if(f == 6){
                         superResult++
@@ -74,25 +70,20 @@ object BOJ1941 {
                 }
                 return
             }
-            for(i in 0..4){
-                for(j in 0..4){
-                    if(!visit[i][j]){
-                        visit[i][j] = true
-                        check[c] = arr[i][j]
-                        checkPath[c] = "$i$j"
-                        if(j == 4) {
-                            func1(c+1, i+1, 0)
-                        }else {
-                            func1(c+1, i, j+1)
-                        }
-
-                        visit[i][j] = false
-                    }
+            for(i in start..24){
+                val tx = i / 5
+                val ty = i % 5
+                if(!visit[i]){
+                    visit[i] = true
+                    check[c] = arr[ty][tx]
+                    checkPath[c] = "$ty$tx"
+                    func1(c+1, i+1)
+                    visit[i] = false
                 }
             }
         }
 
-        func1(0, 0, 0)
+        func1(0, 0)
 
         bw.write("$superResult")
 
