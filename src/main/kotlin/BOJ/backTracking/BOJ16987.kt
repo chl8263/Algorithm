@@ -31,7 +31,7 @@ object BOJ16987 {
 
             for(i in start until num){
                 if(!visit[i]){
-
+                    dfs(0)
                 }
             }
         }
