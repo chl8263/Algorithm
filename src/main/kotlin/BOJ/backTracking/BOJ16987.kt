@@ -23,22 +23,51 @@ object BOJ16987 {
 
         val visit = Array(num){false}
         var ans = 0
-        fun dfs (count: Int, start: Int, breaking: Int){
+        fun dfs (count: Int, current: Int, breaking: Int){
+            ans = max(breaking, ans)
             if(count == num) {
-                ans = max(breaking, ans)
                 return
             }
 
-            for(i in start until num){
-                if(!visit[i]){
-                    dfs(0)
+            for(i in 0 until num){
+                if(arr[i].first > 0 && i != current){
+                    var tBreak = 0
+                    var cur : Int? = null
+                    var obj : Int? = null
+                    val fff = arr[current].first
+                    if(fff > 0){
+                        cur = arr[current].first
+                        obj = arr[i].first
+                        val currentToObj = arr[current].first - arr[i].second
+                        val objToCurrent = arr[i].first - arr[current].second
+
+                        arr[current] = arr[current].copy(first = currentToObj)
+                        arr[i] = arr[i].copy(first = objToCurrent)
+
+                        if(currentToObj <= 0){
+                            tBreak++
+                        }
+                        if(objToCurrent <= 0){
+                            tBreak++
+                        }
+                    }
+
+                    dfs(count+1, current + 1, breaking + tBreak)
+
+                    if(fff > 0) {
+                        arr[current] = arr[current].copy(first = cur!!)
+                        arr[i] = arr[i].copy(first = obj!!)
+                    }
                 }
+//                if(i == num-1) {
+//                    ans = max(breaking, ans)
+//                }
             }
         }
 
-        for(i in 0 until num){
+        dfs(0, 0, 0)
 
-        }
+        bw.write("$ans")
 
         bw.flush()
         bw.close()
