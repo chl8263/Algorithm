@@ -11,13 +11,27 @@ object BOJ15683 {
     fun main(args: Array<String>){
         val br = BufferedReader(InputStreamReader(System.`in`))
         val bw = BufferedWriter(OutputStreamWriter(System.`out`))
-        val st = StringTokenizer(br.readLine())
+//        val st = StringTokenizer(br.readLine())
+//
+//        val Y = st.nextToken().toInt()
+//        val X = st.nextToken().toInt()
 
-        val Y = st.nextToken().toInt()
-        val X = st.nextToken().toInt()
+//        var arr = Array(Y){Array(X){0}}
+//        val cctvs = ArrayList<Triple<Int ,Int, Int>>()
 
-        var arr = Array(Y){Array(X){0}}
-        val cctvs = ArrayList<Triple<Int ,Int, Int>>()
+        var a = 39
+
+        println(a%4)
+        a/=4
+        println(a%4)
+        a/=4
+        println(a%4)
+        a/=4
+        println(a%4)
+        a/=4
+        println(a%4)
+        a/=4
+
 
         bw.flush()
         bw.close()
