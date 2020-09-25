@@ -5,22 +5,118 @@ import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
+import kotlin.math.min
 
 object BOJ15683 {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    val bw = BufferedWriter(OutputStreamWriter(System.`out`))
+    val dy = arrayOf(0, 0, 1, -1)
+    val dx = arrayOf(1, -1, 0, 0)
+
+    lateinit var arr: Array<Array<Int>>
+    lateinit var arr2: Array<Array<Int>>
+
+    var Y: Int = 0
+    var X: Int = 0
+
+    val cctvs = ArrayList<Triple<Int ,Int, Int>>()
+
+    var ans = 0
+
     @JvmStatic
     fun main(args: Array<String>){
-        val br = BufferedReader(InputStreamReader(System.`in`))
-        val bw = BufferedWriter(OutputStreamWriter(System.`out`))
         val st = StringTokenizer(br.readLine())
+        Y = st.nextToken().toInt()
+        X = st.nextToken().toInt()
 
-        val Y = st.nextToken().toInt()
-        val X = st.nextToken().toInt()
+        arr = Array(Y){Array(X){0}}
+        arr2 = Array(Y){Array(X){0}}
 
-        var arr = Array(Y){Array(X){0}}
-        val cctvs = ArrayList<Triple<Int ,Int, Int>>()
+        for(i in 0 until Y){
+            val st2 = StringTokenizer(br.readLine())
+            for(j in 0 until X){
+                val t = st2.nextToken().toInt()
+                arr[i][j] = t
+                if(t in 1..5){
+                    cctvs.add(Triple(i, j, t))
+                }
+                if(t == 0) ans++
+            }
+        }
+
+        var totalPath = 1
+
+        for(i in 0 until cctvs.size){
+            totalPath *= 4
+        }
+
+        for(path in 0 until totalPath){
+
+            for(i in 0 until Y){
+                for(j in 0 until X){
+                    arr2[i][j] = arr[i][j]
+                }
+            }
+
+            var temp = path
+
+            for(j in 0 until cctvs.size){
+                var t = temp % 4
+                temp /= 4
+
+                val type = cctvs[j].third
+                when (type){
+                    1 -> {
+                        uArr(cctvs[j].first, cctvs[j].second, t)
+                    }
+                    2 -> {
+                        uArr(cctvs[j].first, cctvs[j].second, t)
+                        uArr(cctvs[j].first, cctvs[j].second, t+2)
+                    }
+                    3 -> {
+                        uArr(cctvs[j].first, cctvs[j].second, t)
+                        uArr(cctvs[j].first, cctvs[j].second, t+1)
+                    }
+                    4 -> {
+                        uArr(cctvs[j].first, cctvs[j].second, t)
+                        uArr(cctvs[j].first, cctvs[j].second, t+1)
+                        uArr(cctvs[j].first, cctvs[j].second, t+2)
+                    }
+                    5 -> {
+                        uArr(cctvs[j].first, cctvs[j].second, t)
+                        uArr(cctvs[j].first, cctvs[j].second, t+1)
+                        uArr(cctvs[j].first, cctvs[j].second, t+2)
+                        uArr(cctvs[j].first, cctvs[j].second, t+3)
+                    }
+                }
+            }
+
+            var count = 0
+            for(i in 0 until Y){
+                for(j in 0 until X){
+                    if(arr2[i][j] == 0) count++
+                }
+            }
+            ans = min(ans, count)
+        }
+
+        bw.write("$ans")
 
         bw.flush()
         bw.close()
+    }
+
+    fun uArr (y: Int, x: Int, dir: Int){
+        var d = dir % 4
+        var vy = y
+        var vx = x
+        while (true){
+            vy += dy[d]
+            vx += dx[d]
+            if(vy < 0 || vy >= Y || vx < 0 || vx >= X || arr2[vy][vx] == 6) return
+            if(arr2[vy][vx] in 1..5) continue
+            arr2[vy][vx] = -1
+        }
     }
 }
 
