@@ -8,6 +8,7 @@ import java.util.*
 import kotlin.math.min
 
 object BOJ15683 {
+
     val br = BufferedReader(InputStreamReader(System.`in`))
     val bw = BufferedWriter(OutputStreamWriter(System.`out`))
     val dy = arrayOf(0, 0, 1, -1)
