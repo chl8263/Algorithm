@@ -69,5 +69,6 @@ fun rotateArr(y:Int, x: Int, arr: Array<Array<Int>>): Array<Array<Int>> {
             result[i][j] = arr[j][y-i]
         }
     }
+
     return result
 }
