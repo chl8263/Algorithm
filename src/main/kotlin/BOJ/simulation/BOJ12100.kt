@@ -80,6 +80,19 @@ object BOJ12100 {
         return t_arr
     }
 
+    fun rotate(arr: Array<Array<Int>>){
+        val y = arr.size
+        val x = arr[0].size
+
+        val t = Array(x){Array(y){0}}
+
+        for(i in 0 until y){
+            for(j in 0 until x){
+                t[i][j] = arr[][]
+            }
+        }
+    }
+
     fun copyArr(){
         for(i in 0 until arr.size){
             for(j in 0 until arr[0].size){
