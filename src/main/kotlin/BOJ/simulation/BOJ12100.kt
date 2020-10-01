@@ -13,8 +13,6 @@ object BOJ12100 {
         val bw = BufferedWriter(OutputStreamWriter(System.`out`))
         val st = StringTokenizer(br.readLine())
 
-
-
         bw.flush()
         bw.close()
     }
