@@ -15,6 +15,7 @@ object BOJ15686 {
 
     lateinit var arr : Array<Array<Int>>
 
+
     @JvmStatic
     fun main(args: Array<String>){
         val st = StringTokenizer(br.readLine())
