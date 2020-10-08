@@ -25,17 +25,6 @@ object BOJ14891 {
             }
         }
 
-//        for(i in 0..7){
-//            print(arr[0].elementAt(i))
-//        }
-//        println()
-//        var t = arr[0].pollLast()
-//        arr[0].addFirst(t)
-//
-//        for(i in 0..7){
-//            print(arr[0].elementAt(i))
-//        }
-
         val validation = arrayOf(1, -1)
 
         val commandNum = br.readLine().toInt()
@@ -71,7 +60,6 @@ object BOJ14891 {
 
         for(i in 0..3){
             val p = arr[i].elementAt(0)
-            //println(p)
             val result = p.shl(i)
             ans+=result
         }

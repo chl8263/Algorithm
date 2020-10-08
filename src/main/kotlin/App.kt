@@ -12,6 +12,7 @@ object App {
     fun main(args: Array<String>){
         val st = StringTokenizer(br.readLine())
 
+
         bw.flush()
         bw.close()
     }
