@@ -75,7 +75,6 @@ object BOJ13460 {
         q.add(Triple(-1, initY, initX))
         isVisit[initY][initX] = pair(-1, 0, 0)
 
-
         while(q.isNotEmpty()){
 
             val p = q.poll()
