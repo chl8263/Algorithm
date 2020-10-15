@@ -39,7 +39,7 @@ object BOJ3190 {
         val dx = arrayOf(0, 1, 0, -1)
 
         var tail = Pair(0, 0)
-        var ans = 0
+        var ans = 1
 
         val q: Queue<Triple<Int, Int, Int>> = LinkedList()
         q.add(Triple(1, 0, 0))
@@ -54,7 +54,7 @@ object BOJ3190 {
             }
 
             var direction = p.first
-            for(i in 0 until commandList.size){
+            loop2@for(i in 0 until commandList.size){
                 val t = commandList[i]
                 if(ans == t.first){
                     if(t.second == 'L'){
@@ -62,21 +62,22 @@ object BOJ3190 {
                     }else if(t.second == 'D'){
                         direction = (p.first + 4 + 1) % 4
                     }
-                    break
+                    break@loop2
                 }
             }
 
             if(arr[vy][vx].first == 0){
+                val ty = tail.first
+                val tx = tail.second
                 tail = Pair(tail.first + dy[arr[tail.first][tail.second].second],
                     tail.second + dx[arr[tail.first][tail.second].second])
-                arr[tail.first][tail.second] = Pair(0, 0)
+                arr[ty][tx] = Pair(0, 0)
             }
             arr[vy][vx] = Pair(2, direction)
 
             q.add(Triple(direction, vy, vx))
             ans++
         }
-
         bw.write("$ans")
 
         bw.flush()
