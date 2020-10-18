@@ -1,5 +1,6 @@
 package BOJ.simulation
 
+
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
@@ -29,8 +30,6 @@ object BOJ14500 {
                 arr[i][j] = st2.nextToken().toInt()
             }
         }
-
-        
 
 
         bw.flush()
