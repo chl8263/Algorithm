@@ -31,6 +31,31 @@ object BOJ14500 {
             }
         }
 
+        for (truck in arr) {
+            loop@while (true) {
+                if(q.isEmpty()){
+                    q.add(truck)
+                    ans++
+                    weight += truck
+                    break@loop
+                }else if(q.size == w){
+                    weight -= q.poll()
+                }else {
+                    if(weight + truck > l){
+                        q.add(0)
+                        ans++
+                    }else {
+                        q.add(truck)
+                        ans++
+                        weight += truck
+                        break@loop
+                    }
+                }
+            }
+        }
+
+        BOJ13335.bw.write("${ans+w}")
+
 
         bw.flush()
         bw.close()
