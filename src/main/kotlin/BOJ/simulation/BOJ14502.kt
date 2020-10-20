@@ -73,7 +73,6 @@ object BOJ14502 {
                     dfs(n + 1, i)
                     isVisited[i] = false
                 }
-
             }
         }
 
@@ -102,6 +101,7 @@ object BOJ14502 {
                     if(vy < 0 || vy >= y || vx < 0 || vx >= x || visited[vy][vx]) continue
                     if(arr2[vy][vx] != 0) continue
 
+                    q.add(Pair(vy, vx))
                     visited[vy][vx] = true
                     arr2[vy][vx] = 2
                 }
