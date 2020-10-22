@@ -5,13 +5,16 @@ import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
+import kotlin.math.max
+import kotlin.math.min
 
 object BOJ14888 {
     val br = BufferedReader(InputStreamReader(System.`in`))
     val bw = BufferedWriter(OutputStreamWriter(System.`out`))
 
-    val numS = Stack<Int>()
-    val operatorS = Stack<Int>()
+    val numS: Queue<Int> = LinkedList()
+    val numS2: Queue<Int> = LinkedList()
+    val operatorS = ArrayList<Int>()
 
     @JvmStatic
     fun main(args: Array<String>){
@@ -35,13 +38,48 @@ object BOJ14888 {
         val operatorNum = operatorS.size
         val visited = Array(operatorNum){false}
         val order = Array(operatorNum){0}
-        fun dfs(c: Int){
 
+        var ansMax = -1000000000
+        var ansMin = 1000000000
+
+        fun duplicate(){
+            numS2.clear()
+            for(i in numS){
+                numS2.add(i)
+            }
+        }
+
+        fun dfs(c: Int){
             if(c == operatorNum){
+                duplicate()
+                var result = 0
+                result += numS2.poll()
                 for(i in order){
-                    print(order[i])
+                    val t = operatorS[i]
+                    when(t){
+                        0 -> {
+                            result += numS2.poll()
+                        }
+                        1 -> {
+                            result -= numS2.poll()
+                        }
+                        2 -> {
+                            result *= numS2.poll()
+                        }
+                        3 -> {
+                            val tt = numS2.poll()
+                            if(result < 0 && tt > 0){
+                                result = -result
+                                result /= tt
+                                result = -result
+                            }else {
+                                result /= tt
+                            }
+                        }
+                    }
                 }
-                println()
+                ansMax = max(ansMax, result)
+                ansMin = min(ansMin, result)
                 return
             }
 
@@ -55,6 +93,9 @@ object BOJ14888 {
         }
 
         dfs(0)
+
+        bw.write("$ansMax\n")
+        bw.write("$ansMin")
 
         bw.flush()
         bw.close()
