@@ -28,75 +28,42 @@ object BOJ14889 {
         }
 
         val visited = Array(num){false}
-        val order = Array(num){0}
 
         var ans = Int.MAX_VALUE
 
-        var isVisited2 = Array(num){false}
-        val order2 = Array(2){0}
-
-        var t_arr = ArrayList<Int>()
-        var t_result = 0
-        fun dfs2(c: Int){
-            if(c == 2){
-//                for(i in order2){
-//                    print(i)
-//                }
-//                println()
-                t_result += arr[t_arr[order2[0]]][t_arr[order2[1]]]
-                return
-            }
-            for(i in 0 until t_arr.size){
-                if(isVisited2[i]) continue
-                isVisited2[i] = true
-                order2[c] = i
-                dfs2(c+1)
-                isVisited2[i] = false
-            }
-        }
-
-        fun cal(tt_arr: ArrayList<Int>): Int {
-            t_arr = tt_arr
-            isVisited2 = Array(tt_arr.size){false}
-            t_result = 0
-            dfs2(0)
-            return t_result
-        }
-
-        fun dfs(c: Int){
-            if(c == num){
-                var one = 0
-                var two = 0
-                val mid = (num-1)/2
-
-                val oneArr = ArrayList<Int>()
-                val twoArr = ArrayList<Int>()
-                for(i in 0 until order.size){
-                    if(i <= mid){
-                        oneArr.add(order[i])
-                    }else {
-                        twoArr.add(order[i])
+        fun cal(){
+            var resultTrue = 0
+            var resultFalse = 0
+            for(i in 0 until num){
+                for(j in 0 until num){
+                    if(i != j && visited[i] && visited[j]){
+                        resultTrue += arr[i][j]
+                    }
+                    if(i != j && !visited[i] && !visited[j]){
+                        resultFalse += arr[i][j]
                     }
                 }
-                val result1 = cal(oneArr)
-                val result2 = cal(twoArr)
-                ans = min(ans, abs(result1 - result2))
+            }
+            ans = min(ans, abs(resultFalse - resultTrue))
+        }
+
+        fun dfs(c: Int, start: Int){
+            if(c == num/2){
+                cal()
                 return
             }
 
-            for(i in 0 until num){
+            for(i in start until num){
                 if(visited[i]) continue
                 visited[i] = true
-                order[c] = i
-                dfs(c + 1)
+                dfs(c + 1, i)
                 visited[i] = false
             }
         }
-        dfs(0)
+
+        dfs(0, 0)
 
         bw.write("$ans")
-
-        //dfs2(0, 0)
 
         bw.flush()
         bw.close()
