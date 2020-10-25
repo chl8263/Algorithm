@@ -40,35 +40,36 @@ object BOJ14890 {
     }
 
     fun check(start: Int, flag: Int): Boolean {
-        val visit = Array(num){false}
+        val visit = Array(num) { false }
         var temp = 0
-        for(i in 0 until num){
-            if(temp == 0){
-                if(flag == 0){
+        for (i in 0 until num) {
+            if (temp == 0) {
+                if (flag == 0) {
                     temp = arr[start][i]
-                }else {
+                } else {
                     temp = arr[i][start]
                 }
-            }else {
-                if(flag == 0){
+            } else {
+                if (flag == 0) {
                     val diff = abs(temp - arr[start][i])
-                    if(diff == 0) continue
-                    else if(diff > 1) return false
-                    else if(diff == 1){
+                    if (diff == 0) continue
+                    else if (diff > 1) return false
+                    else if (diff == 1) {
                         var result = false
-                        for(k1 in 0..1){
-                            for(k2 in 0 until L){
-                                if(k1 == 0){
+                        for (k1 in 0..1) {
+                            for (k2 in 0 until L) {
+                                if (k1 == 0) {
                                     val t = arr[start][i]
                                 }
                             }
                         }
+                    }else {
+                        return true
                     }
-                }else if (flag == 1 && temp == arr[i][start]) {
+                } else if (flag == 1 && temp == arr[i][start]) {
                     temp = arr[i][start]
                 }
             }
-
         }
     }
 }
