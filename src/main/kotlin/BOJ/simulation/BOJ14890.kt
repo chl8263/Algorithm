@@ -36,11 +36,15 @@ object BOJ14890 {
         var ans = 0
 
         for(i in 0 until num){
-            if(check(0, i, 0)) ans++
+            if(check(0, i, 0)) {
+                ans++
+            }
         }
 
         for(i in 0 until num){
-            if(check(i, 0, 1)) ans++
+            if(check(i, 0, 1)) {
+                ans++
+            }
         }
 
         bw.write("$ans")
@@ -50,7 +54,6 @@ object BOJ14890 {
     }
 
     fun check(y: Int, x: Int, sw: Int): Boolean {
-
 
         var result = true
 
@@ -89,10 +92,10 @@ object BOJ14890 {
                         q.add(Pair(yy, xx))
                     }
                 }else if(current < next){
-                    for(i in 2..L){
+                    for(i in 0 until L){
                         val vy2 = p.first - (dy[sw] * i)
                         val vx2 = p.second - (dx[sw] * i)
-                        if(vy2 < 0 || vy2 >= num || vx2 < 0 || vx2 >= num || isSlide[vy2][vx2] || abs(current - arr[vy2][vx2]) != 1) return false
+                        if(vy2 < 0 || vy2 >= num || vx2 < 0 || vx2 >= num || isSlide[vy2][vx2] || abs(next - arr[vy2][vx2]) != 1) return false
                         isSlide[vy2][vx2] = true
                     }
                     val yy = p.first + dy[sw]
@@ -111,33 +114,3 @@ object BOJ14890 {
         return result
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
