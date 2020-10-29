@@ -1,6 +1,5 @@
 package BOJ.bfs
 
-import jdk.nashorn.internal.ir.WhileNode
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
