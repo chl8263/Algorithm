@@ -21,6 +21,7 @@ object BOJ15684 {
         val arr = Array(H+1){Array(N){0}}
         val lineList = Array(H){Array(N-1){false}}
 
+
         for(i in 0 until M){
             val st2 = StringTokenizer(br.readLine())
             val y = st2.nextToken().toInt() - 1
