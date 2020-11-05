@@ -16,6 +16,7 @@ object BOJ16235 {
 
     var tree = Array(N){Array(N){ArrayList<Int>()}}
     var meal = Array(N){Array(N){5}}
+    var deadMeal = Array(N){Array(N){0}}
     var A = Array(N){Array(N){0}}
 
     val dy = arrayOf(0, 0, 1, -1, 1, -1, 1, -1)
@@ -31,6 +32,7 @@ object BOJ16235 {
 
         tree = Array(N){Array(N){ArrayList<Int>()}}
         meal = Array(N){Array(N){5}}
+        deadMeal = Array(N){Array(N){0}}
         A = Array(N){Array(N){0}}
 
         for(i in 0 until N){
@@ -42,33 +44,36 @@ object BOJ16235 {
 
         for(i in 0 until M){
             val st3 = StringTokenizer(br.readLine())
-            val y = st3.nextToken().toInt() - 1
             val x = st3.nextToken().toInt() - 1
+            val y = st3.nextToken().toInt() - 1
             val old = st3.nextToken().toInt()
             tree[y][x].add(old)
         }
 
         for(i in 1..K){
             spring()
+            summer()
             autom()
             winter()
-
-            for(i in 0 until N){
-                for(j in 0 until N){
-                    val treeList = tree[i][j]
-                    for(treeI in 0 until treeList.size){
-                        print("${treeList[treeI]} ")
-                    }
-                    print(" || ")
-                    println()
-                }
-            }
-            println("================")
+            
+//            for(i in 0 until N){
+//                for(j in 0 until N){
+//                    val treeList = tree[i][j]
+//                    for(treeI in 0 until treeList.size){
+//                        print("${treeList[treeI]} ")
+//                    }
+//                    print(" || ")
+//                    println()
+//                }
+//            }
+//            println("================")
         }
 
         var ans = 0
-        for(i in tree){
-            ans += i.size
+        for(i in 0 until N){
+            for(j in 0 until N){
+                ans += tree[i][j].size
+            }
         }
 
         bw.write("$ans")
@@ -85,14 +90,24 @@ object BOJ16235 {
                 var t_meal = meal[i][j]
                 for(treeI in 0 until treeList.size){
                     val treeOld = treeList[treeI]
-                    t_meal -= treeOld
-                    if (t_meal < 0) {
-                        meal[i][j] += treeOld/2
-                        treeList.remove(treeI)
+                    val cal = t_meal - treeOld
+                    if (cal < 0) {
+                        deadMeal[i][j] += (treeOld/2)
+                        treeList.removeAt(treeI)
                     }else {
                         treeList[treeI]++
+                        meal[i][j] = cal
                     }
                 }
+            }
+        }
+    }
+
+    fun summer(){
+        for(i in 0 until N){
+            for(j in 0 until N){
+                meal[i][j] += deadMeal[i][j]
+                deadMeal[i][j] = 0
             }
         }
     }
@@ -101,11 +116,11 @@ object BOJ16235 {
         for(i in 0 until N) {
             for (j in 0 until N) {
                 val treeList = tree[i][j]
-                for(t in treeList){
-                    if(t % 5 == 0){
+                for(treeIndex in 0 until treeList.size){
+                    if(treeList[treeIndex] % 5 == 0){
                         for(v in 0..7){
                             val vy = i + dy[v]
-                            val vx = i + dx[v]
+                            val vx = j + dx[v]
                             if(vy < 0 || vy >= N || vx < 0 || vx >= N) continue
                             tree[vy][vx].add(1)
                         }
