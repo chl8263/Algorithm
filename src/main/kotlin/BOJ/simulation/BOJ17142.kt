@@ -118,6 +118,7 @@ object BOJ17142 {
             }
         }
 
+
         return ans
     }
 }
