@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.*
 
-object BOJ17143 {
+object BOJ17143_ {
     val br = BufferedReader(InputStreamReader(System.`in`))
     val bw = BufferedWriter(OutputStreamWriter(System.`out`))
 
@@ -39,17 +39,25 @@ object BOJ17143 {
         var ans = 0
         for(i in 0 until X){
             loop@for(j in 0 until Y){
-                if(arr[i][j].first != 0) {
-                    ans += arr[i][j].third
-                    arr[i][j] = Triple(0, 0, 0)
+                if(arr[j][i].third != 0) {
+                    ans += arr[j][i].third
+                    arr[j][i] = Triple(0, 0, 0)
                     break@loop
                 }
             }
             move()
+//            for(i in 0 until Y){
+//                for(j in 0 until X){
+//                    print(arr[i][j])
+//                }
+//                println()
+//            }
+//            println("===============")
         }
 
         bw.write("$ans")
 
+//        move()
 //        for(i in 0 until Y){
 //            for(j in 0 until X){
 //                print(arr[i][j])
@@ -66,7 +74,7 @@ object BOJ17143 {
 
         for(i in 0 until Y){
             for(j in 0 until X){
-                if(arr[i][j].first == 0) continue
+                if(arr[i][j].third == 0) continue
 
                 var location = Pair(i, j)
                 val t = arr[i][j]
@@ -75,35 +83,37 @@ object BOJ17143 {
                 val z = t.third
                 var index = 0
                 loop@while (true){
-                    if(index == s) break@loop
+                    if(index == s) {
+                        if(arr2[location.first][location.second].third != 0){
+                            if(arr2[location.first][location.second].third < t.third){
+                                arr2[location.first][location.second] = Triple(s, d, z)
+                            }
+                        }else {
+                            arr2[location.first][location.second] = Triple(s, d, z)
+                        }
+                        break@loop
+                    }
                     val vy = location.first + dy[d]
                     val vx = location.second + dx[d]
 
                     if(vy < 0 || vy >= Y || vx < 0 || vx >= X){
                         if(d == 0) d = 1
-                        if(d == 1) d = 0
-                        if(d == 2) d = 3
-                        if(d == 3) d = 2
+                        else if(d == 1) d = 0
+                        else if(d == 2) d = 3
+                        else if(d == 3) d = 2
                     }else {
                         location = Pair(vy, vx)
                         index++
                     }
                 }
-
-                if(arr2[location.first][location.second].first != 0){
-                    if(arr2[location.first][location.second].third < t.third){
-                        arr2[location.first][location.second] = Triple(s, d, z)
-                    }
-                }else {
-                    arr2[location.first][location.second] = Triple(s, d, z)
-                }
             }
         }
 
-        for(i in 0 until Y) {
-            for (j in 0 until X) {
-                 arr[i][j] = arr2[i][j]
-            }
-        }
+        arr = arr2
+//        for(i in 0 until Y) {
+//            for (j in 0 until X) {
+//                 arr[i][j] = arr2[i][j]
+//            }
+//        }
     }
 }
