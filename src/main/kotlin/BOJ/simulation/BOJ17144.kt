@@ -14,6 +14,8 @@ object BOJ17144 {
     fun main(args: Array<String>){
         val st = StringTokenizer(br.readLine())
 
+
+
         bw.flush()
         bw.close()
     }
