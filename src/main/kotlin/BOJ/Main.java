@@ -49,7 +49,6 @@ public class Main {
                         tempAns++;
                     }
                 }
-
                 result = Math.max(result, tempAns);
             }
         }
