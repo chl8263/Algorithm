@@ -17,4 +17,3 @@ public class BOJ2750 {
         bw.flush();
     }
 }
-
