@@ -12,8 +12,6 @@ public class BOJ1463 {
         st = new StringTokenizer(br.readLine());
         int num = Integer.parseInt(st.nextToken());
 
-
-
         bw.write(Integer.toString(num));
         bw.flush();
     }
