@@ -14,7 +14,6 @@ object Kotlin_ex {
         val st = StringTokenizer(br.readLine())
 
 
-
         bw.flush()
         bw.close()
     }
