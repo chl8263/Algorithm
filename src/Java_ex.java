@@ -6,8 +6,7 @@ public class Java_ex {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        StringTokenizer st;
-        st = new StringTokenizer(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
         int num = Integer.parseInt(st.nextToken());
 
 
