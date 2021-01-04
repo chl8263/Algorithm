@@ -10,7 +10,6 @@ public class Java_ex {
         int num = Integer.parseInt(st.nextToken());
 
 
-
         bw.write(num);
         bw.flush();
     }
