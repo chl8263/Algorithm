@@ -26,7 +26,6 @@ public class BOJ11053 {
             else dArr[i] = dArr[i-1];
         }
 
-        bw.write(String.valueOf());
         bw.flush();
     }
 }
