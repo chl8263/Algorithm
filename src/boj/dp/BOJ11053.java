@@ -20,11 +20,18 @@ public class BOJ11053 {
             arr[i] = num2;
         }
 
+        int max = arr[1];
         dArr[1] = 1;
         for(int i = 2; i <= num; i ++){
-            if(arr[i] > arr[i-1]) dArr[i] = dArr[i-1]+1;
-            else dArr[i] = dArr[i-1];
+            if(arr[i] > max) {
+                max = arr[i];
+                dArr[i] = dArr[i-1]+1;
+            }else {
+                dArr[i] = dArr[i-1];
+            }
         }
+
+        bw.write(String.valueOf(dArr[num]));
 
         bw.flush();
     }
